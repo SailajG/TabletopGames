@@ -5,6 +5,8 @@ import evaluation.TunableParameters;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
+import players.RL.QL;
+import players.mcts.BasicMCTSPlayer;
 import players.mcts.MCTSParams;
 import players.mcts.MCTSPlayer;
 import players.rhea.RHEAParams;
@@ -135,12 +137,15 @@ public class PlayerFactory {
 
         String input = data.toLowerCase();
         switch (input) {
+            case "ql":
+                return new QL();
             case "random":
                 return new RandomPlayer();
             case "osla":
                 return new OSLAPlayer();
             case "mcts":
-                return new MCTSPlayer(new MCTSParams(System.currentTimeMillis()));
+//                return new MCTSPlayer(new MCTSParams(System.currentTimeMillis()));
+                return new BasicMCTSPlayer();
             case "rmhc":
                 return new RMHCPlayer(new RMHCParams(System.currentTimeMillis()));
             case "rhea":
